@@ -4,6 +4,7 @@ session_regenerate_id();
 ob_start();
 include "config/koneksi.php";
 include "config/function.php";
+include "config/helper.php";
 
 if (!isset($_SESSION['NAMA'])) {
     header("location:index.php");
@@ -101,7 +102,7 @@ if (!isset($_SESSION['NAMA'])) {
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                , made with ❤️ by Akuartra
+                                , made with ❤️ by LilYnaf
                                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                             </div>
                             <div>

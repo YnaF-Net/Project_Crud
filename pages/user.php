@@ -1,16 +1,24 @@
 <?php
-$selectUser = mysqli_query($koneksi, "SELECT * FROM users");
+$selectUser = mysqli_query($koneksi, "SELECT users.name, users.email, users.id FROM users ORDER BY id DESC "); //5,4,3,2,1
 $rows = mysqli_fetch_all($selectUser, MYSQLI_ASSOC);
+
+
+if (isset($_GET['idDelete'])) {
+    $id = $_GET['idDelete'] ?? 0;
+    $delete = mysqli_query($koneksi, "DELETE FROM users WHERE id='$id'");
+    header("location:?page=user");
+    exit();
+}
 
 ?>
 
 <div class="card">
-    <div class="card-header text-center">
-        <h2 class="card-title">Users</h2>
-    </div>
+    <h5 class="card-header ">
+        User Data
+    </h5>
     <div class="card-body">
-        <div class="mb-2">
-            <a href="?page=user-create-edit" class="btn btn-primary">Create</a>
+        <div class="mb-2" align="right">
+            <a href="?page=user-create-edit" class="btn btn-primary">+ Create New User</a>
         </div>
         <div class="table-responsive">
             <?php
@@ -21,12 +29,12 @@ $rows = mysqli_fetch_all($selectUser, MYSQLI_ASSOC);
             }
             ?>
             <table class="table table-bordered">
-                <thead class="text-center">
+                <thead>
 
 
                     <tr>
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Actions</th>
                     </tr>
@@ -41,8 +49,8 @@ $rows = mysqli_fetch_all($selectUser, MYSQLI_ASSOC);
                             <td><?= $r['email'] ?></td>
                             <td>
                                 <a href="?page=user-create-edit&idEdit=<?= $r['id'] ?>" class="btn btn-success">Edit</a>
-                                <form action="" method="post" class="d-inline">
-                                    <button class="btn btn-danger">Delete</button>
+                                <form action="?page=user&idDelete=<?= $r['id'] ?> ?>" method="post" class="d-inline">
+                                    <button class="btn btn-danger" onclick="return confirm('YAKIN LU MBUD?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

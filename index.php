@@ -3,6 +3,15 @@
 session_start();
 // mengenerate value saat login 
 session_regenerate_id();
+
+// var system/superglobal: $_POST, $_GET, $_SERVER
+// $_POST: ['login', 'email', 'password']
+// isset: tidak kosong
+// empty: kosong
+// $_SESSION: nyimpen data di dalam memory browser
+// $_COOKIES: nyimpen data di dalam memory browser
+
+
 include "config/koneksi.php";
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
