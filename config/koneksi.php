@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "project_crud";
+$dbname = "projectcrud";
 
 // Create connection
 $koneksi = new mysqli($servername, $username, $password, $dbname);

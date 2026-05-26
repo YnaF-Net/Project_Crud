@@ -22,3 +22,16 @@ function statusError($status, $location)
     </script>
     ";
 }
+
+
+function inputFailed($status, $location)
+{
+    return "<div class='alert alert-warning' role='alert'>$status</div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = '$location';
+        }, 5000);
+    </script>
+    ";
+}

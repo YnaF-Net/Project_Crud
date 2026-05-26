@@ -1,21 +1,18 @@
+<!-- 
+var system / superglobal
+
+-->
+
+
 <?php
 // untuk mulai sesi saat login
 session_start();
 // mengenerate value saat login 
 session_regenerate_id();
-
-// var system/superglobal: $_POST, $_GET, $_SERVER
-// $_POST: ['login', 'email', 'password']
-// isset: tidak kosong
-// empty: kosong
-// $_SESSION: nyimpen data di dalam memory browser
-// $_COOKIES: nyimpen data di dalam memory browser
-
-
 include "config/koneksi.php";
 if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password =sha1($_POST['password']);
+    $email = htmlspecialchars($_POST['email']);
+    $password = sha1($_POST['password']);
 
     $login = mysqli_query($koneksi, "SELECT * FROM users WHERE email = '$email' ");
     // mengambil satu data saja (assoc)

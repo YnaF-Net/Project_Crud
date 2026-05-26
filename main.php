@@ -6,6 +6,7 @@ include "config/koneksi.php";
 include "config/function.php";
 include "config/helper.php";
 
+
 if (!isset($_SESSION['NAMA'])) {
     header("location:index.php");
     exit();
@@ -102,7 +103,7 @@ if (!isset($_SESSION['NAMA'])) {
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                , made with ❤️ by LilYnaf
+                                , made with ❤️ by Akuartra
                                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                             </div>
                             <div>

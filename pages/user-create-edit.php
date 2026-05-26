@@ -25,35 +25,33 @@ if (isset($_POST['simpan'])) {
 }
 
 
-
 $id = $_GET['idEdit'] ?? '';
-// $id = isset($_GET['idEdit']) ? $_GET['idEdit'] : ''; 
-
 $selectUser = mysqli_query($koneksi, "SELECT * FROM users WHERE id='$id' ");
 $rEdit = mysqli_fetch_assoc($selectUser);
-
 
 if (isset($_POST['edit'])) {
     $name = htmlspecialchars($_POST['name']);
     $email = htmlspecialchars($_POST['email']);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['password_confirm'];
+    $pass = $_POST['password'];
+    $confirm = $_POST['password_confirm'];
     $passHas = sha1($password);
 
     if (empty($password)) {
         mysqli_query($koneksi, "UPDATE users SET name='$name', email='$email' WHERE id='$id'");
         header('location:?page=user');
         exit();
+    } else {
     }
 
     if ($password !== $confirm_password) {
-        header('location:?page=user-create-edit&idEdit=' . $id . '$status=password_not_match');
+
+        header('location:?page=user-create-edit&idEdit=' . $id . '&status=password_not_match');
         exit();
     }
-
     mysqli_query($koneksi, "UPDATE users SET name='$name', email='$email', password='$passHas' WHERE id='$id'");
     header('location:?page=user');
 }
+
 
 
 $status = $_GET['status'] ?? '';
@@ -88,26 +86,29 @@ $status = $_GET['status'] ?? '';
                 <div class="col-6">
                     <label for="" class="form-label">Email</label>
                     <input type="email" name="email" value="<?= isset($_GET['idEdit']) ? $rEdit['email'] : '' ?>"
-                        class="form-control" required placeholder="Enter your Email">
+                        class="form-control" required placeholder="ex: udin@gmail.com">
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <label for="" class="form-label">Password *</label>
-                    <input type="password" name="password" class="form-control" placeholder="Enter Password" <?= !$id ? 'required' : '' ?>>
+                    <input type="password" name="password" class="form-control" placeholder="Enter Password"
+                        <?= $id ? '' : 'required'  ?>>
+                    <!-- short hand if -->
                 </div>
                 <div class="col-6">
                     <label for="" class="form-label">Password Confirm *</label>
                     <input type="password" name="password_confirm" class="form-control"
-                        placeholder="Enter Password Confirm" <?= !$id ? 'required' : '' ?>>
+                        placeholder="Enter Password Confirm" <?= $id ? '' : 'required'  ?>>
                 </div>
                 <?php if ($id): ?>
-                <div class="mt-2 text-secondary">
-                    <p>Leave blank if you don't want to change the password</p>
-                </div>
+                    <div class="mt-2 text-secondary">
+                        <p>* Leave blank if you dont want to change the password *</p>
+                    </div>
                 <?php endif ?>
             </div>
-        
+            <div class="row justify-content-end">
+            </div>
             <div class="text-end mt-2 ">
                 <button type="submit" class="btn btn-primary"
                     name="<?= isset($_GET['idEdit']) ? 'edit' : 'simpan' ?>"><?= isset($_GET['idEdit']) ? 'Save Change' : 'Save' ?></button>

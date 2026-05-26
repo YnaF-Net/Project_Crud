@@ -88,38 +88,19 @@ $menus = mysqli_query($koneksi, "SELECT * FROM menus WHERE parent_id IS NULL AND
                     </a>
 
                     <ul class="menu-sub">
-
-                        <li class="menu-item">
-                            <a href="layouts-without-menu.html" class="menu-link">
-                                <div data-i18n="Without menu">Without menu</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="layouts-without-navbar.html" class="menu-link">
-                                <div data-i18n="Without navbar">Without navbar</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="layouts-container.html" class="menu-link">
-                                <div data-i18n="Container">Container</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="layouts-fluid.html" class="menu-link">
-                                <div data-i18n="Fluid">Fluid</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="layouts-blank.html" class="menu-link">
-                                <div data-i18n="Blank">Blank</div>
-                            </a>
-                        </li>.
+                        <?php foreach ($subMenus as $subMenus): ?>
+                            <li class="menu-item">
+                                <a href="?page=<?= $subMenus['url'] ?>" class="menu-link">
+                                    <div data-i18n="Without menu"><?= $subMenus['name'] ?></div>
+                                </a>
+                            </li>
+                        <?php endforeach ?>
                     </ul>
                     <!-- kalo sub menu tidak ada -->
                 <?php else: ?>
-                    <a href="?page=dashboard" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                        <div data-i18n="Analytics">Dashboard</div>
+                    <a href="?page=<?= $menu['url'] ?>" class="menu-link">
+                        <i class="menu-icon tf-icons bx <?= $menu['icon'] ?>"></i>
+                        <div data-i18n="Analytics"><?= $menu['name'] ?></div>
                     </a>
                 <?php endif ?>
             </li>
