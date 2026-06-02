@@ -22,9 +22,9 @@ if (isset($_GET['delete'])) {
 ?>
 <div class="card">
     <div class="card-header">
-        <h5 class="card-header">
+        <h3 class="card-header">
             Manage Product
-        </h5>
+        </h3>
     </div>
     <div class="card-body">
         <div class="mb-2 d-flex justify-content-end">

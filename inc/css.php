@@ -32,3 +32,6 @@
 <script src="assets/template/assets/js/config.js"></script>
 
 <link href="https://cdn.jsdelivr.net/npm/tinymce@7/skins/ui/oxide/content.min.css" rel="stylesheet">
+<script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="Mid-client-nKh2q7S-x9AMdaHP"></script>
